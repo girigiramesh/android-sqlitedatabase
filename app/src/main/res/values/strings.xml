@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Sqlitedatabase</string>
+    <string name="text_name">Name</string>
+    <string name="text_surname">Surname</string>
+    <string name="text_marks">Marks</string>
+    <string name="btn_add">Add Data</string>
+    <string name="btn_adding">add data</string>
+</resources>
