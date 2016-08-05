@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 if(deleteRows > 0)
                     Toast.makeText(MainActivity.this, "Data is Deleted Sucessfully", Toast.LENGTH_LONG).show();
                 else
-                    Toast.makeText(MainActivity.this, "No Data is Found", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Nothing to delete", Toast.LENGTH_LONG).show();
             }
         });
     }
