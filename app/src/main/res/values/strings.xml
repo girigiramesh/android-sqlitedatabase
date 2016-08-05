@@ -8,4 +8,5 @@
     <string name="btn_viewall">ViewAll</string>
     <string name="update_id">id</string>
     <string name="update_data">update</string>
+    <string name="delete_data">delete data</string>
 </resources>
