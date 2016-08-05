@@ -50,6 +50,21 @@
             android:layout_height="wrap_content"
             android:id="@+id/student_marks"/>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/update_id"
+            android:textStyle="bold"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/updating_id"/>
+
+    </LinearLayout>
   <Button
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
@@ -60,4 +75,9 @@
         android:layout_height="wrap_content"
         android:text="@string/btn_viewall"
         android:id="@+id/btn_view"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/update_data"
+        android:id="@+id/btn_update"/>
 </LinearLayout>

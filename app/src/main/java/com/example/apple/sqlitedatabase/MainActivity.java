@@ -11,9 +11,10 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     DatabaseHelper mydb;
-    EditText student_name,student_surname,student_marks;
+    EditText student_name,student_surname,student_marks,updating_id;
     Button btn_add;
     Button btn_view;
+    Button btn_update;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,10 +24,25 @@ public class MainActivity extends AppCompatActivity {
         student_name = (EditText) findViewById(R.id.student_name);
         student_surname = (EditText) findViewById(R.id.student_surname);
         student_marks = (EditText) findViewById(R.id.student_marks);
+        updating_id = (EditText) findViewById(R.id.updating_id);
         btn_add = (Button) findViewById(R.id.btn_add);
         btn_view = (Button) findViewById(R.id.btn_view);
+        btn_update = (Button) findViewById(R.id.btn_update);
         AddData();
         ViewAll();
+        updateData();
+    }
+    public void updateData(){
+        btn_update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               boolean isUpdate = mydb.updateData(updating_id.getText().toString(),student_name.getText().toString(),student_surname.getText().toString(),student_marks.getText().toString());
+                if(isUpdate == true)
+                    Toast.makeText(MainActivity.this, "Data is updated Sucessfully", Toast.LENGTH_LONG).show();
+                    else
+                    Toast.makeText(MainActivity.this, "No Data is Found", Toast.LENGTH_LONG).show();
+            }
+        });
     }
     public void AddData(){
         btn_add.setOnClickListener(new View.OnClickListener() {
