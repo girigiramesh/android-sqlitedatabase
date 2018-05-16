@@ -11,10 +11,10 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     DatabaseHelper mydb;
-    EditText student_name,student_surname,student_marks,updating_id;
+    EditText student_name, student_surname, student_marks, updating_id;
     Button btn_add;
     Button btn_view;
-    Button btn_update,btn_delete;
+    Button btn_update, btn_delete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,65 +35,68 @@ public class MainActivity extends AppCompatActivity {
         updateData();
         deleteData();
     }
-    public  void deleteData(){
+
+    public void deleteData() {
         btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Integer deleteRows = mydb.deleteData(updating_id.getText().toString());
-                if(deleteRows > 0)
+                Integer deleteRows = mydb.deleteData(updating_id.getText().toString());
+                if (deleteRows > 0)
                     Toast.makeText(MainActivity.this, "Data is Deleted Sucessfully", Toast.LENGTH_LONG).show();
                 else
                     Toast.makeText(MainActivity.this, "Nothing to delete", Toast.LENGTH_LONG).show();
             }
         });
     }
-    public void updateData(){
+
+    public void updateData() {
         btn_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               boolean isUpdate = mydb.updateData(updating_id.getText().toString(),student_name.getText().toString(),student_surname.getText().toString(),student_marks.getText().toString());
-                if(isUpdate == true)
+                boolean isUpdate = mydb.updateData(updating_id.getText().toString(), student_name.getText().toString(), student_surname.getText().toString(), student_marks.getText().toString());
+                if (isUpdate == true)
                     Toast.makeText(MainActivity.this, "Data is updated Sucessfully", Toast.LENGTH_LONG).show();
-                    else
+                else
                     Toast.makeText(MainActivity.this, "No Data is Found", Toast.LENGTH_LONG).show();
             }
         });
     }
-    public void AddData(){
+
+    public void AddData() {
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean isInserted = mydb.insertData(student_name.getText().toString(),student_surname.getText().toString(),student_marks.getText().toString());
-                if(isInserted == true)
+                boolean isInserted = mydb.insertData(student_name.getText().toString(), student_surname.getText().toString(), student_marks.getText().toString());
+                if (isInserted == true)
                     Toast.makeText(MainActivity.this, "Data is Add Sucessfully", Toast.LENGTH_LONG).show();
                 else
-
                     Toast.makeText(MainActivity.this, "No Data is Found", Toast.LENGTH_LONG).show();
-
             }
         });
     }
-    public void ViewAll(){
+
+    public void ViewAll() {
         btn_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Cursor res = mydb.getAllData();
-                if(res.getCount() == 0){
-                    ShowMessage("Error","Nothings");
+                if (res.getCount() == 0) {
+                    ShowMessage("Error", "Nothings");
                     return;
                 }
                 StringBuffer buffer = new StringBuffer();
-                while (res.moveToNext()){
-                    buffer.append("ID :" + res.getString(0)+"\n");
-                    buffer.append("NAME :" + res.getString(1)+"\n");
-                    buffer.append("SURNAME :" + res.getString(2)+"\n");
-                    buffer.append("MARKS :" + res.getString(3)+"\n\n");
+                while (res.moveToNext()) {
+                    buffer.append("ID :" + res.getString(0) + "\n");
+                    buffer.append("NAME :" + res.getString(1) + "\n");
+                    buffer.append("SURNAME :" + res.getString(2) + "\n");
+                    buffer.append("MARKS :" + res.getString(3) + "\n\n");
                 }
-                ShowMessage("Data",buffer.toString());
+                ShowMessage("Data", buffer.toString());
             }
         });
     }
-    public void ShowMessage(String title,String message){
+
+    public void ShowMessage(String title, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
         builder.setTitle(title);
