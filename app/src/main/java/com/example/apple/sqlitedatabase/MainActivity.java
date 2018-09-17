@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     DatabaseHelper mydb;
-    EditText student_name, student_surname, student_marks, updating_id;
+    EditText student_name, student_surname, student_marks, updating_id, updating_phone;
     Button btn_add;
     Button btn_view;
     Button btn_update, btn_delete;
@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         student_surname = (EditText) findViewById(R.id.student_surname);
         student_marks = (EditText) findViewById(R.id.student_marks);
         updating_id = (EditText) findViewById(R.id.updating_id);
+        updating_phone = (EditText) findViewById(R.id.updating_phone);
         btn_add = (Button) findViewById(R.id.btn_add);
         btn_view = (Button) findViewById(R.id.btn_view);
         btn_update = (Button) findViewById(R.id.btn_update);
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         btn_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean isUpdate = mydb.updateData(updating_id.getText().toString(), student_name.getText().toString(), student_surname.getText().toString(), student_marks.getText().toString());
+                boolean isUpdate = mydb.updateData(updating_id.getText().toString(), student_name.getText().toString(), student_surname.getText().toString(), student_marks.getText().toString(), Long.parseLong(updating_phone.getText().toString()));
                 if (isUpdate == true)
                     Toast.makeText(MainActivity.this, "Data is updated Sucessfully", Toast.LENGTH_LONG).show();
                 else
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean isInserted = mydb.insertData(student_name.getText().toString(), student_surname.getText().toString(), student_marks.getText().toString());
+                boolean isInserted = mydb.insertData(student_name.getText().toString(), student_surname.getText().toString(), student_marks.getText().toString(), Long.parseLong(updating_phone.getText().toString()));
                 if (isInserted == true)
                     Toast.makeText(MainActivity.this, "Data is Add Sucessfully", Toast.LENGTH_LONG).show();
                 else
@@ -90,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
                     buffer.append("NAME :" + res.getString(1) + "\n");
                     buffer.append("SURNAME :" + res.getString(2) + "\n");
                     buffer.append("MARKS :" + res.getString(3) + "\n\n");
+                     buffer.append("PHONE :" + res.getLong(4) + "\n\n");
                 }
                 ShowMessage("Data", buffer.toString());
             }

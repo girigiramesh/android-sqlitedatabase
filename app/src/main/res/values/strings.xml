@@ -9,4 +9,5 @@
     <string name="update_id">id</string>
     <string name="update_data">update</string>
     <string name="delete_data">delete data</string>
+    <string name="update_phone">Phone</string>
 </resources>
